@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ test.name }}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'tests/testDetail.css' %}">
+</head>
+<body>
+<h2>{{ test.description }}</h2>
+
+<form action="/submit_test/{{ test.id }}/", method="post">
+<ol>
+    {% for question in questions %}
+        <li>
+            {{ question.text }}
+        <ul>
+            {% for answer in question.answer_set.all %}
+                <li>
+                    <input type="checkbox" name="answer_ids" value={{ answer.id }}> {{ answer.text }}
+                </li>
+            {% endfor %}
+        </ul>
+        </li>
+    {% endfor %}
+</ol>
+<input type="submit" value="Submit">
+</form>
+
+<div class="results">
+    Possible results:
+    <br>
+    <ul>
+        {% for result in results %}
+            <li>
+                Score: {{ result.max_score }} : {{ result.text }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+</html>
