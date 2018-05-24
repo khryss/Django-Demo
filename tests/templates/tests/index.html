@@ -10,6 +10,7 @@
 <ul>
     {% for test in tests %}
         <li>
+        {# 'Name' should not be included in the link. #}
            <a href="/test/{{ test.id }}/"> Name: {{ test.name }} </a>
         <br>
             Description: {{ test.description }}

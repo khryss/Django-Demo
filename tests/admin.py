@@ -4,6 +4,7 @@ from .models import *
 
 @admin.register(Test)
 class TestAdmin(admin.ModelAdmin):
+    # (nice to have) you could add the related objects like questions, results to be easier to add a test
     fields = ('name', 'description')
     list_filter = ('name', )
 
